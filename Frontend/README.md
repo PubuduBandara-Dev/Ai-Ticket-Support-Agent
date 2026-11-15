@@ -10,7 +10,7 @@ A modern, production-grade enterprise SaaS dashboard built in React, TypeScript,
 
 - **Node.js**: v18.0.0+ (Tested on v22.18.0)
 - **npm**: v9.0.0+ (Tested on v10.9.3)
-- **Backend API**: Running locally on `https://localhost:7108`
+- **Backend API**: Running locally on `http://localhost:5121`
 
 ### Installation
 
@@ -51,7 +51,7 @@ frontend/
 ├── postcss.config.js     # PostCSS configuration
 ├── tailwind.config.js    # Tailwind CSS styling & brand tokens
 ├── tsconfig.json         # TypeScript compiler configuration
-├── vite.config.ts        # Vite config with dev proxy to https://localhost:5121
+├── vite.config.ts        # Vite config with dev proxy to http://localhost:5121
 └── src/
     ├── main.tsx          # Application entry point
     ├── App.tsx           # React Router and global layout configuration
@@ -132,7 +132,7 @@ server: {
   port: 5173,
   proxy: {
     '/api': {
-      target: 'https://localhost:7108',
+      target: 'http://localhost:5121',
       changeOrigin: true,
       secure: false, // Accepts local ASP.NET Core developer certificate
     },
@@ -140,7 +140,7 @@ server: {
 }
 ```
 
-This allows the frontend to communicate with the backend during development without CORS issues or SSL warnings.
+The frontend uses a relative API URL by default, so browser requests go through this proxy. This avoids browser CORS issues during development.
 
 ### Direct API Calls (If Preferred)
 
