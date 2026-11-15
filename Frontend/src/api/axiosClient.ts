@@ -8,8 +8,8 @@ type RetryableRequestConfig = InternalAxiosRequestConfig & {
 const MAX_GET_RETRIES = 2;
 const INITIAL_RETRY_DELAY_MS = 500;
 
-// Base API URL from environment variables, or empty string to utilize Vite's dev proxy
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5121';
+// An empty base URL keeps development requests same-origin so Vite can proxy them.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -107,10 +107,13 @@ export function getErrorMessage(error: unknown): string {
       return axiosErr.response.data.title;
     }
     if (axiosErr.message === 'Network Error') {
+      const apiDestination =
+        API_BASE_URL ||
+        (import.meta.env.DEV ? 'the Vite development proxy' : 'the current origin');
       return (
-        'Network Error: Unable to reach the backend API. Please verify the backend is running at ' +
-        (API_BASE_URL || 'http://localhost:5121') +
-        ' and that CORS or local certificates are configured.'
+        'Network Error: Unable to reach the backend API. Please verify the backend is running and reachable via ' +
+        apiDestination +
+        '. If calling it directly, check CORS or local certificates.'
       );
     }
     return axiosErr.message || 'An unexpected API error occurred.';
