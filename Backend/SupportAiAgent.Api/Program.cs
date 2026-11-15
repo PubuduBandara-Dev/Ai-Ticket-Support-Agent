@@ -27,8 +27,8 @@ builder.Services.AddDbContext<SupportDbContext>(options =>
 
 
 builder.Services.AddScoped<IKnowledgeBaseService, KnowledgeBaseApplicationService>();
-//builder.Services.AddScoped<SearchKnowledgeBaseTool>();
-//builder.Services.AddScoped<GetTicketDetailsTool>();
+builder.Services.AddScoped<SearchKnowledgeBaseTool>();
+builder.Services.AddScoped<GetTicketDetailsTool>();
 builder.Services.AddScoped<ITriageService, TriageApplicationService>();
 builder.Services.AddScoped<ITicketService, TicketApplicationService>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
