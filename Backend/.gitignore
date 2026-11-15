@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SupportAiAgent.Api/support.db
+/SupportAiAgent.Api/build-diagnostic.txt
+/SupportAiAgent.Api/SupportAiAgent.Api.csproj.Backup.tmp
+/SupportAiAgent.Api/SupportAiAgent.Api.csproj.user
+/SupportAiAgent.Api/SupportAiAgent.Api.http
+/.vs
+/SupportAiAgent.Api/bin/Debug/net10.0
+/SupportAiAgent.Api/obj
